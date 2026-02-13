@@ -186,6 +186,7 @@ export default function Quiz() {
   // 6 = result, 7 = engage1, 8 = engage2, 9 = loading, 10 = sales
   const [protocolDone, setProtocolDone] = useState(false);
   const [salesActive, setSalesActive] = useState(false);
+  const [showBackRedirect, setShowBackRedirect] = useState(false);
 
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const pendingScroll = useRef<number | null>(null);
@@ -232,6 +233,57 @@ export default function Quiz() {
   const handleProtocolComplete = useCallback(() => {
     setProtocolDone(true);
   }, []);
+
+  const handleBackRedirectCTA = () => {
+    window.location.href = 'https://pay.hub.la/DMBiMIrnZs2LLauExd9A';
+  };
+
+  // Back redirect logic for VSL (section 9)
+  useEffect(() => {
+    if (unlockedUntil !== 9) return;
+
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      setShowBackRedirect(true);
+      return (e.returnValue = '');
+    };
+
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0) {
+        setShowBackRedirect(true);
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || (e.altKey && e.key === 'F4')) {
+        setShowBackRedirect(true);
+      }
+    };
+
+    const handlePopState = () => {
+      setShowBackRedirect(true);
+      window.history.pushState(null, '', window.location.href);
+    };
+
+    // Ativar eventos após 5 segundos na VSL
+    const timer = setTimeout(() => {
+      window.addEventListener('beforeunload', handleBeforeUnload);
+      document.addEventListener('mouseleave', handleMouseLeave);
+      document.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('popstate', handlePopState);
+
+      // Adicionar entrada inicial no histórico
+      window.history.pushState(null, '', window.location.href);
+    }, 5000);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [unlockedUntil]);
 
   // Fade-in on scroll observer
   const [visible, setVisible] = useState<Set<number>>(new Set([0]));
@@ -705,6 +757,100 @@ export default function Quiz() {
               >
                 Clique aqui para RECONQUISTAR sua ex!
               </button>
+            )}
+
+            {/* Back Redirect Overlay */}
+            {showBackRedirect && (
+              <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4">
+                <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 overflow-hidden animate-pulse-slow">
+                  {/* Header */}
+                  <div className="bg-red-600 text-white text-center py-6 px-4">
+                    <h1 className="text-2xl md:text-3xl font-bold mb-2">
+                      NÃO FECHE ESSA PÁGINA AINDA!
+                    </h1>
+                    <p className="text-xl opacity-90">
+                      Essa condição não estará disponível novamente.
+                    </p>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-8 text-center">
+                    <div className="mb-8">
+                      <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
+                        Você acaba de desbloquear o <span className="text-red-600">Código da Reconquista</span> com <span className="text-green-600 text-3xl font-bold">50% de desconto</span>
+                      </h2>
+
+                      <div className="flex items-center justify-center gap-4 mb-6">
+                        <span className="text-2xl text-gray-500 line-through">DE R$97</span>
+                        <span className="text-4xl font-bold text-red-600">Por apenas R$47</span>
+                      </div>
+
+                      <button
+                        onClick={handleBackRedirectCTA}
+                        className="bg-green-500 hover:bg-green-600 text-white text-xl font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 mb-6 w-full md:w-auto"
+                      >
+                        🎯 QUERO RECONQUISTAR MINHA EX
+                      </button>
+
+                      <p className="text-sm text-gray-600 mb-8">
+                        Pagamento único • Acesso imediato • Oferta exclusiva desta página
+                      </p>
+                    </div>
+
+                    {/* Benefits */}
+                    <div className="bg-green-50 rounded-lg p-6 mb-8">
+                      <h3 className="text-xl font-bold text-gray-800 mb-4">
+                        Essa é sua oportunidade de…
+                      </h3>
+
+                      <div className="space-y-3 text-left">
+                        <div className="flex items-start gap-3">
+                          <span className="text-green-500 font-bold text-xl">✔</span>
+                          <p className="text-gray-700">
+                            Parar de se humilhar e voltar a ser o homem que ela admira, respeita e teme perder.
+                          </p>
+                        </div>
+
+                        <div className="flex items-start gap-3">
+                          <span className="text-green-500 font-bold text-xl">✔</span>
+                          <p className="text-gray-700">
+                            Evitar o erro invisível que impede 93% dos homens de reconquistarem a ex.
+                          </p>
+                        </div>
+
+                        <div className="flex items-start gap-3">
+                          <span className="text-green-500 font-bold text-xl">✔</span>
+                          <p className="text-gray-700">
+                            Acessar o SMS que faz ela te desbloquear mesmo após dias ou semanas em silêncio.
+                          </p>
+                        </div>
+
+                        <div className="flex items-start gap-3">
+                          <span className="text-green-500 font-bold text-xl">✔</span>
+                          <p className="text-gray-700">
+                            Ter em mãos o passo a passo para fazer ela repensar o término e colocar a aliança de volta em até 72 horas.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Urgency */}
+                    <div className="bg-red-50 border-2 border-red-200 rounded-lg p-4 mb-6">
+                      <p className="text-red-800 font-semibold">
+                        ⚠️ Assim que você sair desta página, essa condição especial será removida automaticamente.
+                      </p>
+                    </div>
+
+                    {/* Final CTA */}
+                    <button
+                      onClick={handleBackRedirectCTA}
+                      className="bg-red-600 hover:bg-red-700 text-white text-xl font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 w-full md:w-auto animate-bounce"
+                    >
+                      💝 QUERO RECONQUISTAR MINHA EX
+                    </button>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         )}

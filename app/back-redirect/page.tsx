@@ -27,11 +27,22 @@ export default function BackRedirect() {
       }
     };
 
+    // Detectar botão voltar do navegador
+    const handlePopState = () => {
+      setShowOffer(true);
+      // Adicionar uma entrada no histórico para "travar" o usuário
+      window.history.pushState(null, '', window.location.href);
+    };
+
     // Adicionar eventos apenas após o pitch (simulado com delay)
     const timer = setTimeout(() => {
       window.addEventListener('beforeunload', handleBeforeUnload);
       document.addEventListener('mouseleave', handleMouseLeave);
       document.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('popstate', handlePopState);
+
+      // Adicionar entrada inicial no histórico
+      window.history.pushState(null, '', window.location.href);
     }, 5000); // Ativar após 5 segundos (ajuste conforme necessário)
 
     return () => {
@@ -39,12 +50,13 @@ export default function BackRedirect() {
       window.removeEventListener('beforeunload', handleBeforeUnload);
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('popstate', handlePopState);
     };
   }, []);
 
   const handleCTAClick = () => {
     // Redirecionar para página de checkout
-    window.location.href = 'https://pay.hotmart.com/SEU_LINK_DE_CHECKOUT';
+    window.location.href = 'https://pay.hub.la/DMBiMIrnZs2LLauExd9A';
   };
 
   if (!showOffer) {
