@@ -55,7 +55,7 @@ export default function ProtocolLoader({
     const totalDuration = startDelay > 0 ? startDelay : 15000; // 7min 12seg ou 15seg default
     const stepDuration = totalDuration / steps.length;
     const duration = stepDuration;
-    const interval = 50;
+    const interval = 30;
     let elapsed = 0;
 
     const timer = setInterval(() => {
@@ -81,7 +81,7 @@ export default function ProtocolLoader({
     }, interval);
 
     return () => clearInterval(timer);
-  }, [currentStep, onComplete]);
+  }, [currentStep, onComplete, startDelay]);
 
   return (
     <div className="animate-fadeInUp">
