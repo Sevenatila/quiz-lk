@@ -14,9 +14,11 @@ const steps = [
 
 export default function ProtocolLoader({
   active,
+  startDelay = 0,
   onComplete,
 }: {
   active: boolean;
+  startDelay?: number;
   onComplete: () => void;
 }) {
   const [currentStep, setCurrentStep] = useState(-1);
@@ -24,11 +26,25 @@ export default function ProtocolLoader({
     new Array(steps.length).fill(0)
   );
   const [done, setDone] = useState(false);
+  const [delayComplete, setDelayComplete] = useState(false);
 
   useEffect(() => {
     if (!active) return;
-    setCurrentStep(0);
-  }, [active]);
+
+    if (startDelay > 0) {
+      // Mostrar mensagem de aguardo e aguardar delay
+      const delayTimer = setTimeout(() => {
+        setDelayComplete(true);
+        setCurrentStep(0);
+      }, startDelay);
+
+      return () => clearTimeout(delayTimer);
+    } else {
+      // Sem delay, iniciar imediatamente
+      setDelayComplete(true);
+      setCurrentStep(0);
+    }
+  }, [active, startDelay]);
 
   useEffect(() => {
     if (currentStep < 0 || currentStep >= steps.length) return;
@@ -66,11 +82,16 @@ export default function ProtocolLoader({
     <div className="animate-fadeInUp">
       <div className="text-center mb-8">
         <p className="text-red-600 font-semibold text-sm mb-1">
-          Aguarde, estamos criando o seu
+          {!delayComplete ? "Aguarde o final do vídeo para gerar seu" : "Aguarde, estamos criando o seu"}
         </p>
         <h3 className="text-lg font-bold text-gray-900">
           Protocolo Personalizado de Reconquista...
         </h3>
+        {!delayComplete && startDelay > 0 && (
+          <p className="text-xs text-gray-500 mt-2">
+            Protocolo será gerado em {Math.floor(startDelay / 60000)}min {Math.floor((startDelay % 60000) / 1000)}seg
+          </p>
+        )}
       </div>
 
       <div className="space-y-4">
@@ -114,7 +135,7 @@ export default function ProtocolLoader({
         ))}
       </div>
 
-      {done && (
+      {done && delayComplete && (
         <div className="mt-8 text-center animate-bounceIn">
           <div className="inline-flex items-center gap-2 bg-green-50 border-2 border-green-200 rounded-2xl px-6 py-4">
             <span className="text-3xl">✅</span>

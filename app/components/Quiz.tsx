@@ -234,15 +234,16 @@ export default function Quiz() {
     setProtocolDone(true);
   }, []);
 
+
   const handleBackRedirectCTA = () => {
     window.location.href = 'https://pay.hub.la/DMBiMIrnZs2LLauExd9A';
   };
 
-  // Back redirect logic (ativa após seção 1)
+  // Back redirect logic (ativa imediatamente após 5 segundos)
   useEffect(() => {
-    if (unlockedUntil < 1) return;
 
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      console.log('Back redirect: beforeunload triggered');
       e.preventDefault();
       setShowBackRedirect(true);
       return (e.returnValue = '');
@@ -250,27 +251,37 @@ export default function Quiz() {
 
     const handleMouseLeave = (e: MouseEvent) => {
       if (e.clientY <= 0) {
+        console.log('Back redirect: mouse leave triggered');
         setShowBackRedirect(true);
       }
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' || (e.altKey && e.key === 'F4')) {
+        console.log('Back redirect: key triggered', e.key);
         setShowBackRedirect(true);
       }
     };
 
     const handlePopState = () => {
+      console.log('Back redirect: popstate triggered');
       setShowBackRedirect(true);
+      // Adicionar uma entrada no histórico para "travar" o usuário
+      window.history.pushState(null, '', window.location.href);
     };
 
-    // Ativar eventos após 5 segundos
+    // Ativar eventos após 10 segundos
     const timer = setTimeout(() => {
+      console.log('Back redirect: Ativando eventos...');
       window.addEventListener('beforeunload', handleBeforeUnload);
       document.addEventListener('mouseleave', handleMouseLeave);
       document.addEventListener('keydown', handleKeyDown);
       window.addEventListener('popstate', handlePopState);
-    }, 5000);
+
+      // Adicionar entrada inicial no histórico
+      window.history.pushState(null, '', window.location.href);
+      console.log('Back redirect: Eventos ativados e histórico configurado!');
+    }, 10000); // 10 segundos para teste
 
     return () => {
       clearTimeout(timer);
@@ -279,7 +290,7 @@ export default function Quiz() {
       document.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('popstate', handlePopState);
     };
-  }, [unlockedUntil]);
+  }, []);
 
   // Fade-in on scroll observer
   const [visible, setVisible] = useState<Set<number>>(new Set([0]));
@@ -740,6 +751,7 @@ export default function Quiz() {
 
             <ProtocolLoader
               active={unlockedUntil >= 9}
+              startDelay={432000}
               onComplete={handleProtocolComplete}
             />
 

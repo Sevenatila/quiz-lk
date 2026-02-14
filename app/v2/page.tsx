@@ -368,7 +368,6 @@ export default function QuizV2() {
   // 0 = hero, 1-5 = questions, 6 = result, 7 = engage1, 8 = engage2, 9 = loading, 10 = sales
   const [protocolDone, setProtocolDone] = useState(false);
   const [salesActive, setSalesActive] = useState(false);
-  const [showProtocol, setShowProtocol] = useState(false);
   const [showBackRedirect, setShowBackRedirect] = useState(false);
 
   function selectAnswer(questionIdx: number, optionIdx: number) {
@@ -382,13 +381,6 @@ export default function QuizV2() {
     setProtocolDone(true);
   }, []);
 
-  // Mostrar protocolo imediatamente quando chegar no case 9
-  useEffect(() => {
-    if (currentStep === 9) {
-      setShowProtocol(true);
-      setProtocolDone(false);
-    }
-  }, [currentStep]);
 
   // Back redirect logic (ativa após pergunta 1)
   useEffect(() => {
@@ -414,6 +406,8 @@ export default function QuizV2() {
 
     const handlePopState = () => {
       setShowBackRedirect(true);
+      // Adicionar uma entrada no histórico para "travar" o usuário
+      window.history.pushState(null, '', window.location.href);
     };
 
     // Ativar eventos após 5 segundos
@@ -422,6 +416,9 @@ export default function QuizV2() {
       document.addEventListener('mouseleave', handleMouseLeave);
       document.addEventListener('keydown', handleKeyDown);
       window.addEventListener('popstate', handlePopState);
+
+      // Adicionar entrada inicial no histórico
+      window.history.pushState(null, '', window.location.href);
     }, 5000);
 
     return () => {
@@ -839,9 +836,10 @@ export default function QuizV2() {
                 <VTurbPlayer />
               </div>
 
-              {showProtocol && (
+              {currentStep === 9 && (
                 <ProtocolLoader
-                  active={showProtocol}
+                  active={true}
+                  startDelay={432000}
                   onComplete={handleProtocolComplete}
                 />
               )}
