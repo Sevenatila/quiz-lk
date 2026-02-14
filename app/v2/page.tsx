@@ -414,18 +414,14 @@ export default function QuizV2() {
 
     const handlePopState = () => {
       setShowBackRedirect(true);
-      window.history.pushState(null, '', window.location.href);
     };
 
-    // Ativar eventos após 5 segundos na VSL
+    // Ativar eventos após 5 segundos
     const timer = setTimeout(() => {
       window.addEventListener('beforeunload', handleBeforeUnload);
       document.addEventListener('mouseleave', handleMouseLeave);
       document.addEventListener('keydown', handleKeyDown);
       window.addEventListener('popstate', handlePopState);
-
-      // Adicionar entrada inicial no histórico
-      window.history.pushState(null, '', window.location.href);
     }, 5000);
 
     return () => {
@@ -1190,8 +1186,8 @@ export default function QuizV2() {
 
       {/* Back Redirect Global Overlay */}
       {showBackRedirect && (
-        <div className="fixed inset-0 z-[9999] bg-black bg-opacity-95 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-auto my-8 overflow-hidden animate-fadeInUp">
+        <div className="fixed inset-0 z-[9999] bg-black bg-opacity-95 flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+          <div className="bg-white rounded-lg sm:rounded-2xl shadow-2xl max-w-md sm:max-w-lg md:max-w-2xl w-full mx-auto my-4 sm:my-8 max-h-screen overflow-hidden animate-fadeInUp">
             {/* Header */}
             <div className="bg-red-600 text-white text-center py-6 px-4">
               <h1 className="text-2xl md:text-3xl font-bold mb-2">
@@ -1203,7 +1199,7 @@ export default function QuizV2() {
             </div>
 
             {/* Content */}
-            <div className="p-6 md:p-8 text-center">
+            <div className="p-4 sm:p-6 md:p-8 text-center">
               <div className="mb-6">
                 <h2 className="text-lg md:text-2xl font-bold text-gray-800 mb-4 leading-tight">
                   Você acaba de desbloquear o <span className="text-red-600">Código da Reconquista</span> com <span className="text-green-600 text-2xl md:text-3xl font-bold">50% de desconto</span>
