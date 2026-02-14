@@ -238,9 +238,9 @@ export default function Quiz() {
     window.location.href = 'https://pay.hub.la/DMBiMIrnZs2LLauExd9A';
   };
 
-  // Back redirect logic for VSL (section 9)
+  // Back redirect logic (ativa após seção 1)
   useEffect(() => {
-    if (unlockedUntil !== 9) return;
+    if (unlockedUntil < 1) return;
 
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       e.preventDefault();

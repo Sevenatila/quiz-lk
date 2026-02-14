@@ -390,9 +390,9 @@ export default function QuizV2() {
     }
   }, [currentStep]);
 
-  // Back redirect logic for VSL (case 9)
+  // Back redirect logic (ativa após pergunta 1)
   useEffect(() => {
-    if (currentStep !== 9) return;
+    if (currentStep < 1) return;
 
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       e.preventDefault();
