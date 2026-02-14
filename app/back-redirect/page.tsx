@@ -73,8 +73,8 @@ export default function BackRedirect() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-900 via-red-800 to-black flex items-center justify-center p-4">
       {/* Overlay para prevenir fechamento */}
-      <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
-        <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 overflow-hidden animate-pulse-slow">
+      <div className="fixed inset-0 z-[9999] bg-black bg-opacity-95 flex items-center justify-center overflow-y-auto">
+        <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-auto my-8 overflow-hidden animate-fadeInUp">
           {/* Header */}
           <div className="bg-red-600 text-white text-center py-6 px-4">
             <h1 className="text-2xl md:text-3xl font-bold mb-2">
@@ -86,25 +86,25 @@ export default function BackRedirect() {
           </div>
 
           {/* Content */}
-          <div className="p-8 text-center">
-            <div className="mb-8">
-              <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
-                Você acaba de desbloquear o <span className="text-red-600">Código da Reconquista</span> com <span className="text-green-600 text-3xl font-bold">50% de desconto</span>
+          <div className="p-6 md:p-8 text-center">
+            <div className="mb-6">
+              <h2 className="text-lg md:text-2xl font-bold text-gray-800 mb-4 leading-tight">
+                Você acaba de desbloquear o <span className="text-red-600">Código da Reconquista</span> com <span className="text-green-600 text-2xl md:text-3xl font-bold">50% de desconto</span>
               </h2>
 
-              <div className="flex items-center justify-center gap-4 mb-6">
-                <span className="text-2xl text-gray-500 line-through">DE R$97</span>
-                <span className="text-4xl font-bold text-red-600">Por apenas R$47</span>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-6">
+                <span className="text-lg md:text-2xl text-gray-500 line-through">DE R$97</span>
+                <span className="text-2xl md:text-4xl font-bold text-red-600">Por apenas R$47</span>
               </div>
 
               <button
                 onClick={handleCTAClick}
-                className="bg-green-500 hover:bg-green-600 text-white text-xl font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 mb-6 w-full md:w-auto"
+                className="bg-green-500 hover:bg-green-600 text-white text-lg md:text-xl font-bold py-3 md:py-4 px-6 md:px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 mb-4 w-full sm:w-auto"
               >
                 🎯 QUERO RECONQUISTAR MINHA EX
               </button>
 
-              <p className="text-sm text-gray-600 mb-8">
+              <p className="text-xs md:text-sm text-gray-600 mb-6">
                 Pagamento único • Acesso imediato • Oferta exclusiva desta página
               </p>
             </div>
