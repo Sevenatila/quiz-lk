@@ -1130,8 +1130,8 @@ export default function Quiz() {
 
       {/* Back Redirect Global Overlay */}
       {showBackRedirect && (
-        <div className="fixed inset-0 z-[9999] bg-black bg-opacity-95 flex items-start justify-center overflow-y-auto">
-          <div className="bg-white rounded-lg sm:rounded-2xl shadow-2xl max-w-md sm:max-w-lg md:max-w-2xl w-full mx-2 sm:mx-4 my-4 sm:my-8 max-h-[90vh] overflow-y-auto animate-fadeInUp">
+        <div className="fixed inset-0 z-[9999] bg-black bg-opacity-95 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-lg sm:rounded-2xl shadow-2xl max-w-md sm:max-w-lg md:max-w-2xl w-full max-h-[95vh] overflow-y-auto animate-fadeInUp">
             {/* Header */}
             <div className="bg-red-600 text-white text-center py-6 px-4">
               <h1 className="text-2xl md:text-3xl font-bold mb-2">
