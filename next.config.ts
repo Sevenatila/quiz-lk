@@ -5,9 +5,9 @@ const nextConfig: NextConfig = {
     formats: ["image/webp"],
     minimumCacheTTL: 31536000,
   },
-  experimental: {
-    optimizeCss: true,
-  },
+  // experimental: {
+  //   optimizeCss: true,
+  // },
 };
 
 export default nextConfig;
