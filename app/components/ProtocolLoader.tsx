@@ -32,10 +32,12 @@ export default function ProtocolLoader({
     if (!active) return;
 
     if (startDelay > 0) {
-      // Mostrar mensagem de aguardo e aguardar delay
+      // Iniciar carregamento imediatamente mas distribuir ao longo do delay
+      setCurrentStep(0);
+
+      // Completar após o delay total
       const delayTimer = setTimeout(() => {
         setDelayComplete(true);
-        setCurrentStep(0);
       }, startDelay);
 
       return () => clearTimeout(delayTimer);
@@ -49,8 +51,11 @@ export default function ProtocolLoader({
   useEffect(() => {
     if (currentStep < 0 || currentStep >= steps.length) return;
 
-    const duration = 1500 + Math.random() * 1000;
-    const interval = 30;
+    // Calcular duração baseada no delay total
+    const totalDuration = startDelay > 0 ? startDelay : 15000; // 7min 12seg ou 15seg default
+    const stepDuration = totalDuration / steps.length;
+    const duration = stepDuration;
+    const interval = 50;
     let elapsed = 0;
 
     const timer = setInterval(() => {
@@ -82,16 +87,11 @@ export default function ProtocolLoader({
     <div className="animate-fadeInUp">
       <div className="text-center mb-8">
         <p className="text-red-600 font-semibold text-sm mb-1">
-          {!delayComplete ? "Aguarde o final do vídeo para gerar seu" : "Aguarde, estamos criando o seu"}
+          Aguarde, estamos criando o seu
         </p>
         <h3 className="text-lg font-bold text-gray-900">
           Protocolo Personalizado de Reconquista...
         </h3>
-        {!delayComplete && startDelay > 0 && (
-          <p className="text-xs text-gray-500 mt-2">
-            Protocolo será gerado em {Math.floor(startDelay / 60000)}min {Math.floor((startDelay % 60000) / 1000)}seg
-          </p>
-        )}
       </div>
 
       <div className="space-y-4">
