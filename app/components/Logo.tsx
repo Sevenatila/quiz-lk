@@ -5,7 +5,7 @@ export default function Logo({ className = "" }: { className?: string }) {
     <div className={`flex justify-center ${className}`}>
       <Image
         src="/img/logo.webp"
-        alt="Lucas Krausche"
+        alt="Logo"
         width={50}
         height={50}
         priority

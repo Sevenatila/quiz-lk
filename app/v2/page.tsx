@@ -122,7 +122,7 @@ function ProtocolLoader({
   return (
     <div className="animate-fadeInUp">
       <div className="text-center mb-8">
-        <p className="text-pink-400 font-semibold text-sm mb-1">
+        <p className="text-red-400 font-semibold text-sm mb-1">
           Aguarde, estamos criando o seu
         </p>
         <h3 className="text-lg font-bold text-white">
@@ -151,7 +151,7 @@ function ProtocolLoader({
               <span className="text-sm text-gray-300 leading-snug flex-1">
                 {step}
               </span>
-              <span className="text-xs font-bold text-pink-400 min-w-[36px] text-right tabular-nums">
+              <span className="text-xs font-bold text-red-400 min-w-[36px] text-right tabular-nums">
                 {Math.round(stepProgress[i])}%
               </span>
             </div>
@@ -173,13 +173,13 @@ function ProtocolLoader({
 
       {done && delayComplete && (
         <div className="mt-8 text-center animate-bounceIn">
-          <div className="inline-flex items-center gap-2 bg-green-500/20 backdrop-blur-md border border-green-400/30 rounded-2xl px-6 py-4">
+          <div className="inline-flex items-center gap-2 bg-red-500/20 backdrop-blur-md border border-red-400/30 rounded-2xl px-6 py-4">
             <span className="text-3xl">✅</span>
             <div>
-              <p className="text-green-400 font-extrabold text-lg">
+              <p className="text-red-400 font-extrabold text-lg">
                 Protocolo Gerado!
               </p>
-              <p className="text-green-300 text-sm">Resgate agora...</p>
+              <p className="text-red-300 text-sm">Resgate agora...</p>
             </div>
           </div>
         </div>
@@ -207,7 +207,7 @@ function Countdown({ active }: { active: boolean }) {
     .padStart(2, "0")}`;
 
   return (
-    <div className="text-center py-6 my-6 bg-gradient-to-b from-red-500/20 to-black/40 backdrop-blur-md rounded-2xl border border-red-400/20">
+    <div className="text-center py-6 my-6 bg-red-500/20 backdrop-blur-md rounded-2xl border border-red-400/20">
       <p className="text-sm font-medium text-gray-300 mb-1">Faltam</p>
       <div className="text-4xl font-black text-red-400 tracking-tight tabular-nums">
         {display}
@@ -223,9 +223,13 @@ function Countdown({ active }: { active: boolean }) {
 function Logo({ className }: { className?: string }) {
   return (
     <div className={`text-center ${className || ""}`}>
-      <h1 className="text-2xl font-bold text-white">
-        LUCAS <span className="text-pink-400">KRAUSCHE</span>
-      </h1>
+      <Image
+        src="/img/logo.webp"
+        alt="Logo"
+        width={200}
+        height={80}
+        className="h-12 w-auto mx-auto"
+      />
     </div>
   );
 }
@@ -248,7 +252,7 @@ function QuizOption({
       disabled={selected}
       className={`w-full p-4 text-left rounded-xl border transition-all duration-300 ${
         selected
-          ? "bg-gradient-to-r from-pink-600/20 to-red-600/20 border-pink-500 text-white scale-105"
+          ? "bg-red-600/20 border-red-500 text-white scale-105"
           : "bg-black/30 backdrop-blur-md border-white/20 text-gray-200 hover:bg-white/20 hover:border-white/40 hover:scale-102"
       } ${selected ? "cursor-not-allowed" : "cursor-pointer"}`}
     >
@@ -282,7 +286,7 @@ function BonusCard({
             <span className="text-gray-400 line-through text-sm">
               De R$ {oldPrice}
             </span>
-            <span className="text-green-400 font-bold">por GRÁTIS</span>
+            <span className="text-red-400 font-bold">por GRÁTIS</span>
           </div>
         </div>
       </div>
@@ -466,9 +470,9 @@ export default function QuizV2() {
             <div className="text-center mb-8">
               <h1 className="text-[1.6rem] font-extrabold text-white leading-tight mb-3">
                 Descubra como fazer sua ex sentir sua falta{" "}
-                <span className="text-pink-400">em 60 segundos</span>
+                <span className="text-red-400">em 60 segundos</span>
               </h1>
-              <div className="w-12 h-1 bg-gradient-to-r from-pink-500 to-red-500 rounded-full mx-auto mt-4 mb-6" />
+              <div className="w-12 h-1 bg-red-500 rounded-full mx-auto mt-4 mb-6" />
 
               <Image
                 src="/img/whatsapp-hero.webp"
@@ -496,7 +500,7 @@ export default function QuizV2() {
               </p>
             </div>
 
-            <div className="bg-green-500/10 border border-green-400/20 rounded-2xl p-5 mb-8 space-y-4">
+            <div className="bg-red-500/10 border border-red-400/20 rounded-2xl p-5 mb-8 space-y-4">
               {[
                 "Além dessa mensagem você receberá um protocolo personalizado de reconquista.",
                 "Descobrirá qual é o erro que faz 93% dos homens perder a ex pra sempre e como evitá-lo.",
@@ -515,7 +519,7 @@ export default function QuizV2() {
 
             <button
               onClick={() => setCurrentStep(1)}
-              className="w-full py-4 bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 active:scale-[0.98] text-white font-bold text-base rounded-2xl transition-all duration-150 shadow-lg shadow-red-500/20 cursor-pointer uppercase tracking-wide"
+              className="w-full py-4 bg-red-600 hover:bg-red-700 active:scale-[0.98] text-white font-bold text-base rounded-2xl transition-all duration-150 shadow-lg shadow-red-500/20 cursor-pointer uppercase tracking-wide"
             >
               Quero reconquistar minha ex!
             </button>
@@ -528,7 +532,7 @@ export default function QuizV2() {
         return (
           <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-2xl animate-fadeInUp">
             <div className="flex items-center gap-2 mb-6">
-              <span className="text-xs font-bold text-pink-400 bg-pink-400/20 backdrop-blur-md border border-pink-400/20 px-3 py-1 rounded-full">
+              <span className="text-xs font-bold text-red-400 bg-red-400/20 backdrop-blur-md border border-red-400/20 px-3 py-1 rounded-full">
                 Pergunta {qIdx + 1} de 5
               </span>
             </div>
@@ -598,7 +602,7 @@ export default function QuizV2() {
               <p className="text-lg font-bold text-white">Fala, irmão!</p>
               <p>
                 Meu nome é{" "}
-                <strong className="text-pink-400">Lucas Krausche</strong>.
+                <strong className="text-red-400">Lucas Krausche</strong>.
               </p>
               <p>E, eu sei exatamente o que você está passando.</p>
               <p>Te digo isso porque eu já estive do outro lado.</p>
@@ -739,7 +743,7 @@ export default function QuizV2() {
               <p>
                 E aquela mulher que havia me deixado, depois que eu apliquei
                 exatamente o mesmo{" "}
-                <span className="text-red-400 font-semibold">
+                <span className="text-blue-400 font-semibold">
                   truque de 3 etapas
                 </span>{" "}
                 que eu vou te revelar neste plano, hoje é{" "}
@@ -908,7 +912,7 @@ export default function QuizV2() {
                 AGORA VOCÊ TEM 2 OPÇÕES:
               </h3>
               <div className="space-y-4">
-                <div className="bg-red-500/20 border border-red-400/40 rounded-xl p-4">
+                <div className="bg-red-500/20 border border-red-400/30 rounded-xl p-4">
                   <div className="flex items-start gap-3">
                     <span className="text-2xl">❌</span>
                     <div>
@@ -919,7 +923,7 @@ export default function QuizV2() {
                     </div>
                   </div>
                 </div>
-                <div className="bg-green-500/20 border border-green-400/40 rounded-xl p-4">
+                <div className="bg-red-500/20 border border-red-400/30 rounded-xl p-4">
                   <div className="flex items-start gap-3">
                     <span className="text-2xl">❤️</span>
                     <div>
@@ -958,7 +962,7 @@ export default function QuizV2() {
             </a>
 
             {/* Product Promise */}
-            <div className="bg-blue-500/10 border border-blue-400/30 rounded-2xl p-6 mb-8">
+            <div className="bg-red-500/10 border border-red-400/30 rounded-2xl p-6 mb-8">
               <h4 className="text-white font-bold text-center mb-3">
                 O CÓDIGO DA RECONQUISTA entrega exatamente:
               </h4>
@@ -1007,7 +1011,7 @@ export default function QuizV2() {
                   </div>
                 </div>
 
-                <div className="bg-pink-500/20 border border-pink-400/30 rounded-xl p-4">
+                <div className="bg-red-500/20 border border-red-400/30 rounded-xl p-4">
                   <div className="flex items-start gap-3">
                     <span className="text-2xl">👥</span>
                     <div>
@@ -1015,18 +1019,18 @@ export default function QuizV2() {
                       <p className="text-gray-300 text-sm mt-1">
                         Grupo privado de suporte com mais de 5.000 homens que reconquistaram suas ex.
                       </p>
-                      <span className="text-pink-400 font-semibold text-sm">Valor: R$ 297</span>
+                      <span className="text-red-400 font-semibold text-sm">Valor: R$ 297</span>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Total Value */}
-              <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/30 rounded-xl p-4 mt-6 text-center">
+              <div className="bg-red-500/20 border border-red-400/30 rounded-xl p-4 mt-6 text-center">
                 <p className="text-white font-bold text-lg">
                   VALOR TOTAL DOS BÔNUS: <span className="text-red-400 line-through">R$ 2.539</span>
                 </p>
-                <p className="text-green-400 font-bold text-xl">
+                <p className="text-red-400 font-bold text-xl">
                   HOJE POR APENAS: R$ 47
                 </p>
               </div>
@@ -1109,7 +1113,7 @@ export default function QuizV2() {
             {salesActive && <Countdown active={salesActive} />}
 
             {/* Authority Reinforcement */}
-            <div className="bg-blue-600/20 border border-blue-400/30 rounded-xl p-6 mb-8">
+            <div className="bg-red-600/20 border border-red-400/30 rounded-xl p-6 mb-8">
               <div className="text-center">
                 <h4 className="text-white font-bold mb-3">QUEM SOU EU PARA TE ENSINAR ISSO?</h4>
                 <div className="text-gray-300 text-sm space-y-2">
@@ -1186,7 +1190,7 @@ export default function QuizV2() {
             </div>
             <div className="w-full bg-gray-700/50 backdrop-blur-md rounded-full h-2 border border-white/10">
               <div
-                className="bg-gradient-to-r from-pink-500 to-red-500 h-2 rounded-full transition-all duration-500"
+                className="bg-red-500 h-2 rounded-full transition-all duration-500"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -1228,7 +1232,7 @@ export default function QuizV2() {
 
                 <button
                   onClick={handleBackRedirectCTA}
-                  className="bg-green-500 hover:bg-green-600 text-white text-lg md:text-xl font-bold py-3 md:py-4 px-6 md:px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 mb-4 w-full sm:w-auto"
+                  className="bg-red-500 hover:bg-red-600 text-white text-lg md:text-xl font-bold py-3 md:py-4 px-6 md:px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 mb-4 w-full sm:w-auto"
                 >
                   🎯 QUERO RECONQUISTAR MINHA EX
                 </button>
@@ -1239,7 +1243,7 @@ export default function QuizV2() {
               </div>
 
               {/* Benefits */}
-              <div className="bg-green-50 rounded-lg p-4 md:p-6 mb-6">
+              <div className="bg-red-50 rounded-lg p-4 md:p-6 mb-6">
                 <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-4">
                   Essa é sua oportunidade de…
                 </h3>
