@@ -980,16 +980,6 @@ export default function QuizV2() {
                 🎁 + VOCÊ GANHA 5 BÔNUS EXCLUSIVOS:
               </h3>
 
-              {/* Gift Box Image */}
-              <div className="text-center mb-6">
-                <img
-                  src="/img/gift-box.webp"
-                  alt="Caixa de presentes bônus"
-                  className="max-w-xs mx-auto"
-                  width="200"
-                  height="150"
-                />
-              </div>
               <div className="space-y-4">
                 {bonuses.map((bonus, i) => (
                   <BonusCard key={i} {...bonus} index={i} />
@@ -1072,40 +1062,17 @@ export default function QuizV2() {
                 <p className="text-blue-400 font-semibold text-sm">- Bruno, 26 anos</p>
               </div>
 
-              {/* Mais Proof Images */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <img
-                  src="/img/depoimento-1.webp"
-                  alt="Depoimento de sucesso 1"
-                  className="w-full rounded-xl shadow-lg"
-                  width="200"
-                  height="300"
-                />
-                <img
-                  src="/img/depoimento-2.webp"
-                  alt="Depoimento de sucesso 2"
-                  className="w-full rounded-xl shadow-lg"
-                  width="200"
-                  height="300"
-                />
-              </div>
-
-              {/* Mais depoimentos */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <img
-                  src="/img/depoimento-3.webp"
-                  alt="Depoimento de sucesso 3"
-                  className="w-full rounded-xl shadow-lg"
-                  width="200"
-                  height="300"
-                />
-                <img
-                  src="/img/depoimento-4.webp"
-                  alt="Depoimento de sucesso 4"
-                  className="w-full rounded-xl shadow-lg"
-                  width="200"
-                  height="300"
-                />
+              <div className="space-y-4">
+                {[1, 2, 4, 6, 7].map((n) => (
+                  <Image
+                    key={n}
+                    src={`/img/depoimento-${n}.webp`}
+                    alt={`Depoimento de aluno ${n}`}
+                    width={400}
+                    height={500}
+                    className="rounded-2xl shadow-lg w-full"
+                  />
+                ))}
               </div>
             </div>
 
