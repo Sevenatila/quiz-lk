@@ -26,10 +26,8 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://cdn.utmify.com.br" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
-      </head>
-      <body className={`${inter.variable} antialiased`}>
-        {children}
-        <Script id="utmify-pixel" strategy="afterInteractive">
+
+        <Script id="utmify-pixel" strategy="beforeInteractive">
           {`
             window.pixelId = "66b4ed3b88437ee533f62d0d";
             var a = document.createElement("script");
@@ -42,18 +40,11 @@ export default function RootLayout({
         <Script
           src="https://cdn.utmify.com.br/scripts/utms/latest.js"
           data-utmify-prevent-subids
-          strategy="afterInteractive"
+          strategy="beforeInteractive"
         />
-        <Script id="utmify-google-pixel" strategy="afterInteractive">
-          {`
-            window.googlePixelId = "67df4a14b9a8899c7e1b76ed";
-            var b = document.createElement("script");
-            b.setAttribute("async", "");
-            b.setAttribute("defer", "");
-            b.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel-google.js");
-            document.head.appendChild(b);
-          `}
-        </Script>
+      </head>
+      <body className={`${inter.variable} antialiased`}>
+        {children}
       </body>
     </html>
   );
