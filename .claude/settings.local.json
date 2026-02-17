@@ -29,7 +29,10 @@
       "Bash(del nul)",
       "Bash(\"C:\\Program Files\\GitHub CLI\\gh.exe\" api repos/Sevenatila/quiz-lk/pages)",
       "Bash(del \"C:\\Users\\atila\\Desktop\\Lucas Kraushe\\backredirect-standalone.html\")",
-      "Bash(copy \"v2\\page.tsx\" \"cdr_hubla\\page.tsx\")"
+      "Bash(copy \"v2\\page.tsx\" \"cdr_hubla\\page.tsx\")",
+      "Bash(\"C:\\Program Files\\GitHub CLI\\gh.exe\" auth login --web)",
+      "Bash(git remote remove:*)",
+      "Bash(git pull:*)"
     ]
   }
 }
