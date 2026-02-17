@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oferta Especial - Código da Reconquista</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .animate-bounceIn {
+            animation: bounceIn 0.8s ease-out;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="bg-black">
+    <!-- Initial Loading Screen -->
+    <div id="loadingScreen" class="min-h-screen bg-black flex items-center justify-center">
+        <div class="text-center text-white">
+            <h1 class="text-2xl mb-4">Assistindo VSL...</h1>
+            <p>Aguarde o final do vídeo para ver uma oferta especial</p>
+        </div>
+    </div>
+
+    <!-- Back Redirect Offer -->
+    <div id="offerModal" class="hidden min-h-screen bg-gradient-to-br from-red-900 via-red-800 to-black flex items-center justify-center p-4">
+        <!-- Overlay para prevenir fechamento -->
+        <div class="fixed inset-0 z-[9999] bg-black bg-opacity-95 flex items-center justify-center overflow-y-auto">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-auto my-8 overflow-hidden animate-fadeInUp">
+                <!-- Header -->
+                <div class="bg-red-600 text-white text-center py-6 px-4">
+                    <h1 class="text-2xl md:text-3xl font-bold mb-2">
+                        NÃO FECHE ESSA PÁGINA AINDA!
+                    </h1>
+                    <p class="text-xl opacity-90">
+                        Essa condição não estará disponível novamente.
+                    </p>
+                </div>
+
+                <!-- Content -->
+                <div class="p-6 md:p-8 text-center">
+                    <div class="mb-6">
+                        <h2 class="text-lg md:text-2xl font-bold text-gray-800 mb-4 leading-tight">
+                            Você acaba de desbloquear o <span class="text-red-600">Código da Reconquista</span> com <span class="text-green-600 text-2xl md:text-3xl font-bold">50% de desconto</span>
+                        </h2>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-6">
+                            <span class="text-lg md:text-2xl text-gray-500 line-through">DE R$97</span>
+                            <span class="text-2xl md:text-4xl font-bold text-red-600">Por apenas R$47</span>
+                        </div>
+
+                        <button
+                            onclick="handleCTAClick()"
+                            class="bg-green-500 hover:bg-green-600 text-white text-lg md:text-xl font-bold py-3 md:py-4 px-6 md:px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 mb-4 w-full sm:w-auto"
+                        >
+                            🎯 QUERO RECONQUISTAR MINHA EX
+                        </button>
+
+                        <p class="text-xs md:text-sm text-gray-600 mb-6">
+                            Pagamento único • Acesso imediato • Oferta exclusiva desta página
+                        </p>
+                    </div>
+
+                    <!-- Benefits -->
+                    <div class="bg-green-50 rounded-lg p-6 mb-8">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">
+                            Essa é sua oportunidade de…
+                        </h3>
+
+                        <div class="space-y-3 text-left">
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-500 font-bold text-xl">✔</span>
+                                <p class="text-gray-700">
+                                    Parar de se humilhar e voltar a ser o homem que ela admira, respeita e teme perder.
+                                </p>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-500 font-bold text-xl">✔</span>
+                                <p class="text-gray-700">
+                                    Evitar o erro invisível que impede 93% dos homens de reconquistarem a ex.
+                                </p>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-500 font-bold text-xl">✔</span>
+                                <p class="text-gray-700">
+                                    Acessar o SMS que faz ela te desbloquear mesmo após dias ou semanas em silêncio.
+                                </p>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-500 font-bold text-xl">✔</span>
+                                <p class="text-gray-700">
+                                    Ter em mãos o passo a passo para fazer ela repensar o término e colocar a aliança de volta em até 72 horas.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Urgency -->
+                    <div class="bg-red-50 border-2 border-red-200 rounded-lg p-4 mb-6">
+                        <p class="text-red-800 font-semibold">
+                            ⚠️ Assim que você sair desta página, essa condição especial será removida automaticamente.
+                        </p>
+                    </div>
+
+                    <!-- Final CTA -->
+                    <button
+                        onclick="handleCTAClick()"
+                        class="bg-red-600 hover:bg-red-700 text-white text-xl font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 w-full md:w-auto animate-bounce"
+                    >
+                        💝 QUERO RECONQUISTAR MINHA EX
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let showOffer = false;
+        let eventsActive = false;
+
+        function showOfferModal() {
+            if (showOffer) return;
+
+            showOffer = true;
+            document.getElementById('loadingScreen').classList.add('hidden');
+            document.getElementById('offerModal').classList.remove('hidden');
+        }
+
+        function handleCTAClick() {
+            // Redirecionar para página de checkout
+            window.location.href = 'https://pay.hub.la/DMBiMIrnZs2LLauExd9A';
+        }
+
+        function handleBeforeUnload(e) {
+            if (!eventsActive) return;
+            e.preventDefault();
+            showOfferModal();
+            return (e.returnValue = '');
+        }
+
+        function handleMouseLeave(e) {
+            if (!eventsActive) return;
+            if (e.clientY <= 0) {
+                showOfferModal();
+            }
+        }
+
+        function handleKeyDown(e) {
+            if (!eventsActive) return;
+            if (e.key === 'Escape' || (e.altKey && e.key === 'F4')) {
+                showOfferModal();
+            }
+        }
+
+        function handlePopState() {
+            if (!eventsActive) return;
+            showOfferModal();
+            // Adicionar uma entrada no histórico para "travar" o usuário
+            window.history.pushState(null, '', window.location.href);
+        }
+
+        // Inicializar após 5 segundos (simulando final do pitch)
+        setTimeout(() => {
+            eventsActive = true;
+
+            // Adicionar eventos de detecção de saída
+            window.addEventListener('beforeunload', handleBeforeUnload);
+            document.addEventListener('mouseleave', handleMouseLeave);
+            document.addEventListener('keydown', handleKeyDown);
+            window.addEventListener('popstate', handlePopState);
+
+            // Adicionar entrada inicial no histórico
+            window.history.pushState(null, '', window.location.href);
+        }, 5000); // Ativar após 5 segundos
+
+        // Cleanup quando sair da página (boa prática)
+        window.addEventListener('unload', () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+            document.removeEventListener('mouseleave', handleMouseLeave);
+            document.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener('popstate', handlePopState);
+        });
+    </script>
+</body>
+</html>

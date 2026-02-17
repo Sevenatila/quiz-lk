@@ -1,0 +1,507 @@
+<style>
+/* Estilos do Back Redirect */
+#backredirect-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    display: none;
+}
+
+#backredirect-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#backredirect-modal {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    max-width: 700px;
+    width: 100%;
+    margin: 20px auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideInUp 0.6s ease-out;
+    position: relative;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    40%, 43% {
+        transform: translate3d(0, -30px, 0);
+    }
+    70% {
+        transform: translate3d(0, -15px, 0);
+    }
+    90% {
+        transform: translate3d(0, -4px, 0);
+    }
+}
+
+.bounce-animation {
+    animation: bounce 2s infinite;
+}
+
+#backredirect-header {
+    background: #dc2626;
+    color: white;
+    text-align: center;
+    padding: 24px 16px;
+}
+
+#backredirect-header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+}
+
+#backredirect-header p {
+    font-size: 20px;
+    margin: 0;
+    opacity: 0.9;
+}
+
+#backredirect-content {
+    padding: 32px 24px;
+    text-align: center;
+}
+
+.price-section {
+    margin-bottom: 24px;
+}
+
+.main-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.highlight-red {
+    color: #dc2626;
+}
+
+.highlight-green {
+    color: #16a34a;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.price-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.old-price {
+    font-size: 20px;
+    color: #6b7280;
+    text-decoration: line-through;
+}
+
+.new-price {
+    font-size: 32px;
+    font-weight: bold;
+    color: #dc2626;
+}
+
+.cta-button {
+    background: #22c55e;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin: 0 auto 16px auto;
+    width: 100%;
+    max-width: 350px;
+    word-wrap: break-word;
+    text-align: center;
+    line-height: 1.2;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.cta-button:hover {
+    background: #16a34a;
+    transform: scale(1.05);
+}
+
+.cta-button-final {
+    background: #dc2626;
+    font-size: 16px;
+    padding: 14px 20px;
+    min-height: 56px;
+    max-width: 350px;
+    width: 100%;
+    margin: 0 auto;
+    white-space: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.cta-button-final:hover {
+    background: #b91c1c;
+}
+
+.payment-info {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 24px;
+}
+
+.benefits-section {
+    background: #f0fdf4;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 32px;
+    text-align: left;
+}
+
+.benefits-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.check-icon {
+    color: #22c55e;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+.benefit-text {
+    color: #374151;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.urgency-section {
+    background: #fef2f2;
+    border: 2px solid #fecaca;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+}
+
+.urgency-text {
+    color: #991b1b;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Scroll customizado para o modal */
+#backredirect-modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+#backredirect-modal::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#backredirect-modal::-webkit-scrollbar-thumb {
+    background: #dc2626;
+    border-radius: 4px;
+}
+
+#backredirect-modal::-webkit-scrollbar-thumb:hover {
+    background: #b91c1c;
+}
+
+/* Garantir que funciona em mobile */
+@media (max-width: 639px) {
+    #backredirect-overlay {
+        padding: 10px;
+    }
+
+    #backredirect-modal {
+        margin: 10px auto;
+        max-height: 95vh;
+    }
+
+    #backredirect-header {
+        padding: 20px 12px;
+    }
+
+    #backredirect-content {
+        padding: 24px 16px;
+    }
+
+    .cta-button {
+        font-size: 12px;
+        padding: 8px 10px;
+        min-height: 48px;
+        max-width: 280px;
+    }
+
+    .cta-button-final {
+        font-size: 13px;
+        padding: 10px 12px;
+        min-height: 52px;
+        max-width: 280px;
+    }
+}
+
+/* Responsivo */
+@media (min-width: 640px) {
+    #backredirect-header h1 {
+        font-size: 28px;
+    }
+
+    .main-title {
+        font-size: 24px;
+    }
+
+    .highlight-green {
+        font-size: 32px;
+    }
+
+    .old-price {
+        font-size: 24px;
+    }
+
+    .new-price {
+        font-size: 40px;
+    }
+
+    .cta-button {
+        font-size: 14px;
+        width: 100%;
+        min-height: 56px;
+        padding: 12px 16px;
+        max-width: 350px;
+        margin: 0 auto 16px auto;
+    }
+
+    .cta-button-final {
+        font-size: 16px;
+        min-height: 64px;
+        padding: 14px 20px;
+        max-width: 350px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .price-container {
+        flex-wrap: nowrap;
+    }
+
+    #backredirect-modal {
+        margin: 30px auto;
+    }
+}
+</style>
+
+<div id="backredirect-container">
+    <div id="backredirect-overlay">
+        <div id="backredirect-modal">
+            <!-- Header -->
+            <div id="backredirect-header">
+                <h1>NÃO FECHE ESSA PÁGINA AINDA!</h1>
+                <p>Essa condição não estará disponível novamente.</p>
+            </div>
+
+            <!-- Content -->
+            <div id="backredirect-content">
+                <div class="price-section">
+                    <h2 class="main-title">
+                        Você acaba de desbloquear o <span class="highlight-red">Código da Reconquista</span> com <span class="highlight-green">50% de desconto</span>
+                    </h2>
+
+                    <div class="price-container">
+                        <span class="old-price">DE R$97</span>
+                        <span class="new-price">Por apenas R$47</span>
+                    </div>
+
+                    <button class="cta-button" onclick="redirectToCheckout()">
+                        🎯 QUERO RECONQUISTAR
+                    </button>
+
+                    <p class="payment-info">
+                        Pagamento único • Acesso imediato • Oferta exclusiva desta página
+                    </p>
+                </div>
+
+                <!-- Benefits -->
+                <div class="benefits-section">
+                    <h3 class="benefits-title">
+                        Essa é sua oportunidade de…
+                    </h3>
+
+                    <div class="benefit-item">
+                        <span class="check-icon">✔</span>
+                        <p class="benefit-text">
+                            Parar de se humilhar e voltar a ser o homem que ela admira, respeita e teme perder.
+                        </p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <span class="check-icon">✔</span>
+                        <p class="benefit-text">
+                            Evitar o erro invisível que impede 93% dos homens de reconquistarem a ex.
+                        </p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <span class="check-icon">✔</span>
+                        <p class="benefit-text">
+                            Acessar o SMS que faz ela te desbloquear mesmo após dias ou semanas em silêncio.
+                        </p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <span class="check-icon">✔</span>
+                        <p class="benefit-text">
+                            Ter em mãos o passo a passo para fazer ela repensar o término e colocar a aliança de volta em até 72 horas.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Urgency -->
+                <div class="urgency-section">
+                    <p class="urgency-text">
+                        ⚠️ Assim que você sair desta página, essa condição especial será removida automaticamente.
+                    </p>
+                </div>
+
+                <!-- Final CTA -->
+                <button class="cta-button cta-button-final bounce-animation" onclick="redirectToCheckout()">
+                    💝 QUERO RECONQUISTAR
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    let offerShown = false;
+    let eventsActive = false;
+
+    function showOffer() {
+        if (!offerShown) {
+            offerShown = true;
+            document.getElementById('backredirect-container').style.display = 'block';
+        }
+    }
+
+    function redirectToCheckout() {
+        window.location.href = 'https://pay.hub.la/DMBiMIrnZs2LLauExd9A';
+    }
+
+    function handleBeforeUnload(e) {
+        if (eventsActive) {
+            e.preventDefault();
+            showOffer();
+            return (e.returnValue = '');
+        }
+    }
+
+    function handleMouseLeave(e) {
+        if (eventsActive && e.clientY <= 0) {
+            showOffer();
+        }
+    }
+
+    function handleKeyDown(e) {
+        if (eventsActive && (e.key === 'Escape' || (e.altKey && e.key === 'F4'))) {
+            showOffer();
+        }
+    }
+
+    function handlePopState() {
+        if (eventsActive && !offerShown) {
+            setTimeout(function() {
+                showOffer();
+            }, 10); // Micro delay para garantir que o evento seja processado
+
+            // Bloquear o voltar múltiplas vezes
+            setTimeout(function() {
+                window.history.pushState(null, '', window.location.href);
+            }, 100);
+        }
+    }
+
+    // Função melhorada para bloquear o histórico
+    function preventBackNavigation() {
+        window.history.pushState(null, '', window.location.href);
+        window.addEventListener('popstate', handlePopState);
+    }
+
+    // Expor função para uso global
+    window.redirectToCheckout = redirectToCheckout;
+
+    // Ativar eventos após 5 segundos
+    setTimeout(function() {
+        eventsActive = true;
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        document.addEventListener('mouseleave', handleMouseLeave);
+        document.addEventListener('keydown', handleKeyDown);
+
+        // Configurar bloqueio de volta imediatamente
+        preventBackNavigation();
+
+        // Adicionar listener adicional para garantir
+        setTimeout(preventBackNavigation, 500);
+    }, 5000);
+
+    // Para teste - remover em produção
+    setTimeout(function() {
+        if (!offerShown) {
+            console.log('Back redirect ativo. Teste: mova o mouse para fora da janela ou pressione ESC');
+        }
+    }, 6000);
+})();
+</script>

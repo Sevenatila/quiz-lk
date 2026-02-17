@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(SRC=\"C:/Users/atila/Desktop/Lucas Kraushe/imagens do funil/imagem 001.png\")",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nImplementar quiz completo com Next.js e TypeScript\n\n- Adicionar componentes do quiz (Quiz, QuizOption, ProgressBar)\n- Implementar sistema de contagem regressiva (Countdown)\n- Criar loader de protocolo personalizado (ProtocolLoader)\n- Adicionar cartão de bônus (BonusCard)\n- Configurar layout responsivo com Tailwind CSS\n- Adicionar imagens e assets necessários\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(gh repo create:*)",
+      "Bash(winget install:*)",
+      "Bash(gh auth:*)",
+      "Bash(refreshenv)",
+      "Bash(\"C:\\Program Files\\GitHub CLI\\gh.exe\" --version)",
+      "Bash(\"C:\\Program Files\\GitHub CLI\\gh.exe\" auth login)",
+      "Bash(git push:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(git init:*)",
+      "Bash(git commit:*)",
+      "Bash(\"C:\\Program Files\\GitHub CLI\\gh.exe\" repo create quiz-html --public --source=. --push)",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)",
+      "Bash(\"C:\\Program Files\\GitHub CLI\\gh.exe\" api repos/Sevenatila/quiz-html/pages -X POST -f source[branch]=main -f source[path]=/)",
+      "Bash(\"C:\\Program Files\\GitHub CLI\\gh.exe\" auth status)",
+      "Bash(npm run dev:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(npx kill-port:*)",
+      "Bash(dir:*)",
+      "Bash(timeout:*)",
+      "Bash(del nul)",
+      "Bash(\"C:\\Program Files\\GitHub CLI\\gh.exe\" api repos/Sevenatila/quiz-lk/pages)",
+      "Bash(del \"C:\\Users\\atila\\Desktop\\Lucas Kraushe\\backredirect-standalone.html\")",
+      "Bash(copy \"v2\\page.tsx\" \"cdr_hubla\\page.tsx\")"
+    ]
+  }
+}
